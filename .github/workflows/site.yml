@@ -1,7 +1,9 @@
 # Maintained by hand for otpplus/status (SEC-1222), based on Upptime v1.44.1.
 # The organisation keeps GITHUB_TOKEN read-only by default, so this workflow
 # grants itself the write scopes it needs. Endpoint URLs come from repository
-# secrets referenced as $NAME in .upptimerc.yml.
+# secrets referenced as $NAME in .upptimerc.yml. Uptime and Response Time must
+# name each one in SECRETS_CONTEXT: passing toJson(secrets) whole leaves the
+# run in action_required with no jobs.
 
 name: Static Site CI
 on:
