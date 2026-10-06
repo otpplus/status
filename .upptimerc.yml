@@ -1,24 +1,19 @@
 # Public status page for Securify and OTP+ (SEC-1222).
 # Live at https://status.securification.ai — checks every 5 minutes from GitHub Actions.
 #
-# Endpoint URLs that name our infrastructure are kept in repository secrets so
-# they never appear on the page, in the README or in this file. Each secret
-# holds the full health URL of one service.
+# Every checked URL except the public website lives in a repository secret
+# ($NAME below) so no internal hostname, health route or version string
+# appears on the page, in the README, in this file or in the Actions logs.
+# The status page shows only the service name and whether it is up. Adding a
+# check: `gh secret set NAME -R otpplus/status`, then reference it here.
 #
 # The workflows in .github/workflows are maintained by hand: the organisation
 # keeps GITHUB_TOKEN read-only by default, so each workflow grants itself the
 # write scopes it needs, and the template self-update workflows are disabled.
-# If you change the list of secrets below, add the same names to
-# SECRETS_CONTEXT in uptime.yml and response-time.yml.
 
 owner: otpplus
 repo: status
 user-agent: otpplus-status
-
-secrets:
-  - SECURIFY_APP_HEALTH_URL
-  - SECURIFY_API_HEALTH_URL
-  - OTP_PLUS_APP_HEALTH_URL
 
 sites:
   - name: Securify app
@@ -46,12 +41,14 @@ sites:
     expectedStatusCodes:
       - 200
     maxResponseTime: 5000
+    icon: https://cdn.shopify.com/app-store/listing_images/9cbbac2d0d1c5dd670248065e8861510/icon/CMv9l_nJx5QDEAE=.png
   - name: OTP+ one-time code delivery
     slug: otp-plus-code-delivery
-    url: https://gateway.otp.plus
+    url: $OTP_PLUS_GATEWAY_URL
     expectedStatusCodes:
       - 200
     maxResponseTime: 5000
+    icon: https://cdn.shopify.com/app-store/listing_images/9cbbac2d0d1c5dd670248065e8861510/icon/CMv9l_nJx5QDEAE=.png
 
 # GITHUB_TOKEN cannot edit repository settings or delete issues.
 skipDescriptionUpdate: true

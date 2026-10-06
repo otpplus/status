@@ -1,4 +1,4 @@
-url: https://gateway.otp.plus
+url: $OTP_PLUS_GATEWAY_URL
 status: up
 code: 200
 responseTime: 239

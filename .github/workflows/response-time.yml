@@ -1,7 +1,7 @@
 # Maintained by hand for otpplus/status (SEC-1222), based on Upptime v1.44.1.
 # The organisation keeps GITHUB_TOKEN read-only by default, so this workflow
-# grants itself the write scopes it needs. Endpoint secrets are listed in
-# .upptimerc.yml under `secrets:` and must match SECRETS_CONTEXT below.
+# grants itself the write scopes it needs. Endpoint URLs come from repository
+# secrets referenced as $NAME in .upptimerc.yml.
 
 name: Response Time CI
 on:
@@ -31,4 +31,4 @@ jobs:
           command: "response-time"
         env:
           GH_PAT: ${{ github.token }}
-          SECRETS_CONTEXT: '{"SECURIFY_APP_HEALTH_URL":${{ toJson(secrets.SECURIFY_APP_HEALTH_URL) }},"SECURIFY_API_HEALTH_URL":${{ toJson(secrets.SECURIFY_API_HEALTH_URL) }},"OTP_PLUS_APP_HEALTH_URL":${{ toJson(secrets.OTP_PLUS_APP_HEALTH_URL) }}}'
+          SECRETS_CONTEXT: ${{ toJson(secrets) }}
