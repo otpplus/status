@@ -1,31 +1,80 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# Public status page for Securify and OTP+ (SEC-1222).
+# Live at https://status.securification.ai — checks every 5 minutes from GitHub Actions.
+#
+# Endpoint URLs that name our infrastructure are kept in repository secrets so
+# they never appear on the page, in the README or in this file. Each secret
+# holds the full health URL of one service.
+#
+# The workflows in .github/workflows are maintained by hand: the organisation
+# keeps GITHUB_TOKEN read-only by default, so each workflow grants itself the
+# write scopes it needs, and the template self-update workflows are disabled.
+# If you change the list of secrets below, add the same names to
+# SECRETS_CONTEXT in uptime.yml and response-time.yml.
+
+owner: otpplus
+repo: status
+user-agent: otpplus-status
+
+secrets:
+  - SECURIFY_APP_HEALTH_URL
+  - SECURIFY_API_HEALTH_URL
+  - OTP_PLUS_APP_HEALTH_URL
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: Securify app
+    slug: securify-app
+    url: $SECURIFY_APP_HEALTH_URL
+    expectedStatusCodes:
+      - 200
+    maxResponseTime: 5000
+    icon: https://securification.ai/securify-logo.png
+  - name: Securify protection service
+    slug: securify-protection
+    url: $SECURIFY_API_HEALTH_URL
+    expectedStatusCodes:
+      - 200
+    maxResponseTime: 5000
+    icon: https://securification.ai/securify-logo.png
+  - name: Securify website
+    slug: securify-website
+    url: https://securification.ai
+    maxResponseTime: 8000
+    icon: https://securification.ai/securify-logo.png
+  - name: OTP+ app
+    slug: otp-plus-app
+    url: $OTP_PLUS_APP_HEALTH_URL
+    expectedStatusCodes:
+      - 200
+    maxResponseTime: 5000
+  - name: OTP+ one-time code delivery
+    slug: otp-plus-code-delivery
+    url: https://gateway.otp.plus
+    expectedStatusCodes:
+      - 200
+    maxResponseTime: 5000
+
+# GITHUB_TOKEN cannot edit repository settings or delete issues.
+skipDescriptionUpdate: true
+skipTopicsUpdate: true
+skipHomepageUpdate: true
+skipDeleteIssues: true
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  cname: status.securification.ai
+  logoUrl: https://securification.ai/securify-logo.png
+  favicon: https://securification.ai/securify-logo.png
+  name: Securify & OTP+ Status
+  theme: light
+  introTitle: "Live status of **Securify** and **OTP+**"
+  introMessage: >-
+    We check both apps every 5 minutes. If something is not working, you will
+    see it here first, with updates until it is fixed. Planned maintenance is
+    posted here before it starts. Need help? Chat with us inside the app or
+    email [dev@otp.plus](mailto:dev@otp.plus).
   navbar:
     - title: Status
       href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
-
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+    - title: Help center
+      href: https://help.securification.ai/en/
+    - title: Security
+      href: https://securification.ai/security
