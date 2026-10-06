@@ -37,8 +37,10 @@ Comment on the open incident issue. Comments appear on the status page.
 ## Adding or changing a check
 
 Edit `.upptimerc.yml`. Any URL other than a public marketing site goes in a
-repository secret (`gh secret set NAME -R otpplus/status`) and is referenced as
-`$NAME`, so no internal hostname, health route or version string reaches the
+repository secret (`gh secret set NAME -R otpplus/status`), is referenced as
+`$NAME`, and is named in `SECRETS_CONTEXT` of `uptime.yml` and
+`response-time.yml` (passing `toJson(secrets)` whole leaves those runs in
+`action_required` with no jobs). That way no internal hostname, health route or version string reaches the
 page, the README, the issues or the Actions logs. The page shows only the
 service name and whether it is up.
 

@@ -5,7 +5,8 @@
 # ($NAME below) so no internal hostname, health route or version string
 # appears on the page, in the README, in this file or in the Actions logs.
 # The status page shows only the service name and whether it is up. Adding a
-# check: `gh secret set NAME -R otpplus/status`, then reference it here.
+# check: `gh secret set NAME -R otpplus/status`, reference it here, and name
+# it in SECRETS_CONTEXT of uptime.yml and response-time.yml (see OPERATING.md).
 #
 # The workflows in .github/workflows are maintained by hand: the organisation
 # keeps GITHUB_TOKEN read-only by default, so each workflow grants itself the
