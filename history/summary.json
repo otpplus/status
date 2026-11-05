@@ -58,18 +58,20 @@
     "url": "$OTP_PLUS_APP_HEALTH_URL",
     "icon": "https://cdn.shopify.com/app-store/listing_images/9cbbac2d0d1c5dd670248065e8861510/icon/CMv9l_nJx5QDEAE=.png",
     "slug": "otp-plus-app",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
-    "uptimeDay": "100.00%",
+    "uptimeDay": "99.99%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 195,
-    "timeDay": 268,
-    "timeWeek": 231,
-    "timeMonth": 195,
-    "timeYear": 195,
-    "dailyMinutesDown": {}
+    "time": 192,
+    "timeDay": 190,
+    "timeWeek": 216,
+    "timeMonth": 192,
+    "timeYear": 192,
+    "dailyMinutesDown": {
+      "2026-11-05": 0
+    }
   },
   {
     "name": "OTP+ one-time code delivery",
